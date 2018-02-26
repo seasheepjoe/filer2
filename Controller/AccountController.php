@@ -78,15 +78,20 @@ class AccountController extends BaseController
 
             $ifUserExists = "SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'";
             $result = mysqli_query($link, $ifUserExists);
+            $user = mysqli_fetch_assoc($result);
 
-            if (empty(mysqli_fetch_assoc($result))) {
+            if (empty($user)) {
                 $errors = 'Wrong email or password';
             }
 
             if (!empty($errors)) {
                 echo $errors;
             }else {
-                echo 'Connected';
+                $_SESSION['username'] = $user['firstname'];
+                echo $_SESSION['username'];
+                /*header('Location: ?action=upload');
+                exit();*/
+
             }
         }
         return $this->render('login.html.twig');
