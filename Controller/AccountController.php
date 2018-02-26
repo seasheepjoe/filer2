@@ -6,6 +6,7 @@ class AccountController extends BaseController
 {
     public function registerAction()
     {
+        require_once('init.php');
         $firstname = ' ';
         $lastname = ' ';
         $email = ' ';
@@ -24,7 +25,6 @@ class AccountController extends BaseController
              $birthdate = htmlentities($_POST['birthdate']);
              $password = $_POST['password'];
              $password_check = $_POST['password-check'];
-             $link = mysqli_connect('localhost', 'root', '', 'filer2');
              $q = "INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `country`, `city`, `birthdate`, `password`) VALUES (NULL, '" . $firstname . "', '" . $lastname . "',
               '" . $email . "', '" . $country . "', '" . $city . "', '" . $birthdate . "', '" . $password . "')";
             $errors = [];
@@ -68,12 +68,12 @@ class AccountController extends BaseController
 
     public function loginAction()
     {
+        require_once('init.php');
         $email = ' ';
         $password = ' ';
         if (isset($_POST['email']) && isset($_POST['password'])) {
             $email = htmlentities($_POST['email']);
             $password = $_POST['password'];
-            $link = mysqli_connect('localhost', 'root', '', 'filer2');
             $errors = [];
 
             $ifUserExists = "SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'";
