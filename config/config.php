@@ -13,5 +13,6 @@ $config = [
         'home'    => 'Main:home',
         'register'=> 'Account:register',
         'login'   => 'Account:login',
+        'upload'  => 'Upload:upload',
     ]
 ];
