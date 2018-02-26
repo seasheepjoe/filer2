@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Register{% endblock %}
+
+{% block content %}
+<h1>
+  Here you can register<br>
+</h1>
+<form name="register-form" method="post" action="">
+    <label>Firstname</label><br>
+    <input name="firstname" type="text" id="firstname"><br><br>
+    <label>Lastname</label><br>
+    <input name="lastname" type="text" id="lastname"><br><br>
+    <label>Email</label><br>
+    <input name="email" type="email" id="email"><br><br>
+    <label>Country</label><br>
+    <input name="country" type="text" id="country"><br><br>
+    <label>City</label><br>
+    <input name="city" type="text" id="city"><br><br>
+    <label>Date of birth</label><br>
+    <input name="birthdate" type="date" id="birthdate"><br><br>
+    <label>Password</label><br>
+    <input name="password" type="password" id="password"><br><br>
+    <label>Retype password</label><br>
+    <input name="password-check" type="password" id="password-check"><br><br>
+    <button type="submit" name="register-btn">Register</button>    
+</form>
+{% endblock %}

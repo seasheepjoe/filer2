@@ -1,4 +1,3 @@
-small
-{
-    color: purple;
+form[name="register-form"] {
+    text-align: center;
 }

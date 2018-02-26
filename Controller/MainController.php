@@ -8,4 +8,11 @@ class MainController extends BaseController
     {
         return $this->render('home.html.twig');
     }
+
+    public function registerAction()
+    {
+        $firstname = ' ';
+        $lastname = ' ';
+        return $this->render('register.html.twig');
+    }
 }
