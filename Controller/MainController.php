@@ -34,7 +34,7 @@ class MainController extends BaseController
               '" . $email . "', '" . $country . "', '" . $city . "', '" . $birthdate . "', '" . $password . "')";
             $errors = [];
 
-            if (strlen($firstname) <= 2 || strlen($firstname) > 25) {
+            /*if (strlen($firstname) <= 2 || strlen($firstname) > 25) {
                 $errors[] = 'Firstname must be 3-25 long';
             }
 
@@ -48,7 +48,18 @@ class MainController extends BaseController
 
             if ($password !== $password_check) {
                 $errors[] = 'Please type the same password';
+            }*/
+
+            $isEmailUsed = "SELECT `email` FROM `users` WHERE `email` = '$email'";
+            $result = mysqli_query($link, $isEmailUsed);
+
+            if (mysqli_fetch_assoc($result)["email"] === $email) {
+                $errors[] = 'You already have an account';
             }
+
+            /*if (mysqli_fetch_assoc($result) === true) {
+                $errors[] = 'Already have an account';
+            }*/
 
             if (!empty($errors)) {
                 foreach($errors as $error) {
@@ -57,8 +68,8 @@ class MainController extends BaseController
             }else {
                 echo 'No errors';
                 mysqli_query($link, $q);
-                header('Location: ?action=register');
-                exit();
+               /*header('Location: ?action=register');
+                exit();*/
             }
             
          }
