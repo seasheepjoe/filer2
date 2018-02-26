@@ -6,23 +6,23 @@
 <h1>
   Here you can register<br>
 </h1>
-<form name="register-form" method="post" action="">
+<form name="register-form" method="post" action="?action=register">
     <label>Firstname</label><br>
-    <input name="firstname" type="text" id="firstname"><br><br>
+    <input name="firstname" type="text" id="firstname" required><br><br>
     <label>Lastname</label><br>
-    <input name="lastname" type="text" id="lastname"><br><br>
+    <input name="lastname" type="text" id="lastname" required><br><br>
     <label>Email</label><br>
-    <input name="email" type="email" id="email"><br><br>
+    <input name="email" type="email" id="email" required><br><br>
     <label>Country</label><br>
-    <input name="country" type="text" id="country"><br><br>
+    <input name="country" type="text" id="country" required><br><br>
     <label>City</label><br>
-    <input name="city" type="text" id="city"><br><br>
+    <input name="city" type="text" id="city" required><br><br>
     <label>Date of birth</label><br>
-    <input name="birthdate" type="date" id="birthdate"><br><br>
+    <input name="birthdate" type="date" id="birthdate" required><br><br>
     <label>Password</label><br>
-    <input name="password" type="password" id="password"><br><br>
+    <input name="password" type="password" id="password" required><br><br>
     <label>Retype password</label><br>
-    <input name="password-check" type="password" id="password-check"><br><br>
+    <input name="password-check" type="password" id="password-check" required><br><br>
     <button type="submit" name="register-btn">Register</button>    
 </form>
 {% endblock %}
