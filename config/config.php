@@ -11,6 +11,7 @@ $config = [
     ],
     'routes' => [
         'home'    => 'Main:home',
-        'register'=> 'Main:register',
+        'register'=> 'Account:register',
+        'login'   => 'Account:login',
     ]
 ];
