@@ -42,12 +42,23 @@ class MainController extends BaseController
                 $errors[] = 'Lastname must be 3-25 long';
             }
 
+            if (strlen($password) <= 7 || strlen($password) > 15) {
+                $errors[] = 'Password must be 8-15';
+            }
+
+            if ($password !== $password_check) {
+                $errors[] = 'Please type the same password';
+            }
+
             if (!empty($errors)) {
-                foreach($errors as $lol) {
-                    echo $lol;
+                foreach($errors as $error) {
+                    echo $error . "<br>";
                 }
             }else {
                 echo 'No errors';
+                mysqli_query($link, $q);
+                header('Location: ?action=register');
+                exit();
             }
             
          }
