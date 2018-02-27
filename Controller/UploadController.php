@@ -14,7 +14,9 @@ class UploadController extends BaseController
             $tmp_name = $_FILES['file-upload']['tmp_name'];
             $file_data = ['name' => $name, 'type' => $type, 'size' => $size, 'tmp_name' => $tmp_name];
             $user_dir = $_SESSION['dir'];
-        
+            if (move_uploaded_file($tmp_name, $user_dir . $name)) {
+                echo 'okok uploaded';
+            }
             
         }
         
