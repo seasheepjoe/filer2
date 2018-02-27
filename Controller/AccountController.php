@@ -58,6 +58,9 @@ class AccountController extends BaseController
                 }
             }else {
                 mysqli_query($link, $q);
+                $dir = 'uploads/' . $firstname . '/';
+                mkdir($dir, 0777, true);
+                $_SESSION['dir'] = $dir;
                 header('Location: ?action=register');
                 exit();
             }
@@ -89,9 +92,6 @@ class AccountController extends BaseController
             }else {
                 $_SESSION['username'] = $user['firstname'];
                 echo $_SESSION['username'];
-                /*header('Location: ?action=upload');
-                exit();*/
-
             }
         }
         return $this->render('login.html.twig');
