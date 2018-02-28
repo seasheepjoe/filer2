@@ -51,7 +51,7 @@ class AccountController extends BaseController
             if ($password !== $password_check) {
                 $errors[] = 'Please type the same password';
             }
-
+        
             if (!empty($errors)) {
                 foreach($errors as $error) {
                     echo $error . "<br>";
