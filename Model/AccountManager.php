@@ -54,11 +54,13 @@ class AccountManager {
         }
     }
 
-    public function login($firstname, $password) {
+    public function login($email, $password) {
         $errors = [];
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+        $login = $pdo->prepare("SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'");
+        $user = $login->execute();
+        var_dump($user);
     }
 }

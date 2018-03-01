@@ -9,8 +9,8 @@
     Login to see your files<br>
 </h1>
 <form name="login-form" method="post" action="?action=login">
-    <label>Firstname</label><br>
-    <input name="firstname" type="text" id="firstname" required placeholder="John">{{ errors['firstname'] }}<br><br>
+    <label>Email</label><br>
+    <input name="email" type="email" id="email" required placeholder="johndoe@john.doe">{{ errors['email'] }}<br><br>
     <label>Password</label><br>
     <input name="password" type="password" id="password" required placeholder="i'mtherealjohndoe">{{ errors['password'] }}<br><br>
     <button type="submit" name="login-btn">Register</button>    
