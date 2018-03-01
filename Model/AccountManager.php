@@ -55,12 +55,22 @@ class AccountManager {
     }
 
     public function login($email, $password) {
-        $errors = [];
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
+
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $login = $pdo->prepare("SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'");
-        $user = $login->execute();
-        var_dump($user);
+        
+        $login->execute();
+        $user = $login->fetch();
+
+        if (!empty($user)) {
+            session_start();
+            $_SESSION['username'] = $user['firstname'];
+            header('Location: ?action=upload');
+            exit();
+        }else {
+            return 'Invalid email or password';
+        }
     }
 }

@@ -35,6 +35,7 @@ class AccountController extends BaseController
 
     public function loginAction() {
         require_once('Model/AccountManager.php');
+        session_start();
         $errors_data = [];
         $email = ' ';
         $password = ' ';
@@ -43,8 +44,11 @@ class AccountController extends BaseController
             $password = $_POST['password'];
             $account_manager = new AccountManager();
             $errors = $account_manager->login($email, $password);
-            $errors_data = ['errors' => $errors];
+            $errors_data = [
+                'errors' => $errors,
+                'user'   => $_SESSION,
+            ];
         }
-        return $this->render('login.html.twig');
+        return $this->render('login.html.twig', $errors_data);
     }
 }
