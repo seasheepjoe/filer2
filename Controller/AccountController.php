@@ -5,6 +5,7 @@ require_once('Cool/BaseController.php');
 class AccountController extends BaseController
 {
     public function registerAction() {
+        $errors_data = [];
         require_once('Model/AccountManager.php');
         $firstname = ' ';
         $lastname = ' ';
@@ -26,9 +27,9 @@ class AccountController extends BaseController
             $password_check = $_POST['password-check'];
             $account_manager = new AccountManager();
             $errors = $account_manager-> register($firstname, $lastname, $email, $country, $city, $birthdate, $password, $password_check);
-            $data = ['errors' => $errors];
+            $errors_data = ['errors' => $errors];
              
          }
-        return $this->render('register.html.twig');
+        return $this->render('register.html.twig', $errors_data);
     }
 }
