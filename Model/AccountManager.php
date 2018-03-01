@@ -56,6 +56,9 @@ class AccountManager {
 
     public function login($firstname, $password) {
         $errors = [];
-        
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
     }
 }

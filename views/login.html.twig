@@ -8,23 +8,11 @@
     <h1>
     Login to see your files<br>
 </h1>
-<form name="register-form" method="post" action="?action=register">
+<form name="login-form" method="post" action="?action=login">
     <label>Firstname</label><br>
     <input name="firstname" type="text" id="firstname" required placeholder="John">{{ errors['firstname'] }}<br><br>
-    <label>Lastname</label><br>
-    <input name="lastname" type="text" id="lastname" required placeholder="Doe">{{ errors['lastname'] }}<br><br>
-    <label>Email</label><br>
-    <input name="email" type="email" id="email" required placeholder="johndoe@john.doe">{{ errors['email'] }}<br><br>
-    <label>Country</label><br>
-    <input name="country" type="text" id="country" required placeholder="France"><br><br>
-    <label>City</label><br>
-    <input name="city" type="text" id="city" required placeholder="Paris"><br><br>
-    <label>Date of birth</label><br>
-    <input name="birthdate" type="date" id="birthdate" required><br><br>
     <label>Password</label><br>
     <input name="password" type="password" id="password" required placeholder="i'mtherealjohndoe">{{ errors['password'] }}<br><br>
-    <label>Retype password</label><br>
-    <input name="password-check" type="password" id="password-check" required placeholder="i'mtherealjohndoe">{{ errors['password_check'] }}<br><br>
-    <button type="submit" name="register-btn">Register</button>    
+    <button type="submit" name="login-btn">Register</button>    
 </form>
 {% endblock %}
