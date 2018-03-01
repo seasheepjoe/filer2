@@ -36,6 +36,10 @@ class AccountController extends BaseController
     public function loginAction() {
         require_once('Model/AccountManager.php');
         session_start();
+        if (isset($_SESSION['username'])) {
+            session_destroy();
+        }
+
         $errors_data = [];
         $email = ' ';
         $password = ' ';
@@ -50,5 +54,11 @@ class AccountController extends BaseController
             ];
         }
         return $this->render('login.html.twig', $errors_data);
+    }
+
+    public function logoutAction() {
+        session_destroy();
+        header('Location: ?action=login');
+        exit();
     }
 }

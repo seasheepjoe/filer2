@@ -59,13 +59,11 @@ class AccountManager {
         $pdo = $db->getPdo();
 
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $login = $pdo->prepare("SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'");
-        
-        $login->execute();
+        $login = $pdo->query("SELECT * FROM `users` WHERE `email` = '" . $email . "' AND `password` = '" . $password . "'");
+
         $user = $login->fetch();
 
-        if (!empty($user)) {
-            session_start();
+        if (!empty($user)) { 
             $_SESSION['username'] = $user['firstname'];
             header('Location: ?action=upload');
             exit();
