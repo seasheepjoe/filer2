@@ -7,22 +7,19 @@ class UploadController extends BaseController
     public function uploadAction() {
         session_start();
         $users_data = ['user' => $_SESSION];
+        require_once('Model/FileManager.php');
 
         if (isset($_POST['upload-btn'])) {
             $name = $_FILES['user_file']['name'];
             $type = $_FILES['user_file']['type'];
             $size = $_FILES['user_file']['size'];
             $tmp_name = $_FILES['user_file']['tmp_name'];
-            $file_data = ['name' => $name, 'type' => $type, 'size' => $size, 'tmp_name' => $tmp_name];
             $user_dir = $users_data['user']['user_dir'];
+            $file_data = ['dir' => $user_dir, 'name' => $name, 'type' => $type, 'size' => $size, 'tmp_name' => $tmp_name];
 
-            if (!is_uploaded_file($tmp_name)) {
-                exit("Cannot find the file");
-            }
-
-            if (!move_uploaded_file($tmp_name, $user_dir . $name)) {
-                exit("Cannot move file into $user_dir");
-            }
+            $file_manager = new FileManager();
+            $upload_errors = $file_manager->upload($file_data);
+            $errors = ['errors' => $upload_errors];
         }
         return $this->render('upload.html.twig', $users_data);
     }
