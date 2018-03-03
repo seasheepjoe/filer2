@@ -32,5 +32,5 @@ class FileManager {
         }else {
             return $errors;
         }
-    }
+    } 
 }

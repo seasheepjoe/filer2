@@ -6,9 +6,13 @@ class UploadController extends BaseController
 {
     public function uploadAction() {
         session_start();
-        $users_data = ['user' => $_SESSION];
+        $users_data = [
+            'user' => $_SESSION,
+            'files'=> scandir($_SESSION['user_dir']),
+        ];
+
         require_once('Model/FileManager.php');
-        $errors = [];   
+        $errors = [];
 
         if (isset($_POST['upload-btn'])) {
             $name = $_FILES['user_file']['name'];
@@ -20,10 +24,11 @@ class UploadController extends BaseController
 
             $file_manager = new FileManager();
             $upload_errors = $file_manager->upload($file_data);
+
             $users_data = [
                 'errors' => $upload_errors,
-                'user'   => $_SESSION,
-                'files'  => $file_data,
+                'user' => $_SESSION,
+                'files'=> scandir($_SESSION['user_dir']),
             ];
         }
         return $this->render('upload.html.twig', $users_data);
