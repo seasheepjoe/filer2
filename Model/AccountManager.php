@@ -47,8 +47,8 @@ class AccountManager {
             $request->execute();
             $dir = 'uploads/' . $firstname . '/';
             mkdir($dir, 0777, true);
-            $_SESSION['dir'] = $dir;
             header('Location: ?action=login');
+
         }else {
             return $errors;
         }
@@ -65,6 +65,7 @@ class AccountManager {
 
         if (!empty($user)) { 
             $_SESSION['username'] = $user['firstname'];
+            $_SESSION['user_dir'] = 'uploads/' . $user['firstname'] . '/';
             header('Location: ?action=upload');
             exit();
         }else {
