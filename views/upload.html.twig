@@ -10,5 +10,11 @@
         <label>Choose your file :</label><br><br>
         <input name="user_file" type="file"><br><br>
         <button name="upload-btn" type="submit">Upload</button>
-    </form>{{ errors['error'] }}
+    </form>
+    <div class="upload-errors errors">
+        {{ errors['upload'] }}
+    </div>
+    <div class="files">
+    {{ files }}
+    </div>    
 {% endblock %}
