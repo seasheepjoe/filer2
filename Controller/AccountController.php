@@ -40,7 +40,7 @@ class AccountController extends BaseController
             session_destroy();
         }
 
-        $errors_data = [];
+        $account_data = [];
         $email = ' ';
         $password = ' ';
         if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['login-btn'])) {
@@ -48,12 +48,12 @@ class AccountController extends BaseController
             $password = $_POST['password'];
             $account_manager = new AccountManager();
             $errors = $account_manager->login($email, $password);
-            $errors_data = [
+            $account_data = [
                 'errors' => $errors,
                 'user'   => $_SESSION,
             ];
         }
-        return $this->render('login.html.twig', $errors_data);
+        return $this->render('login.html.twig', $account_data);
     }
 
     public function logoutAction() {
