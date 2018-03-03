@@ -6,9 +6,9 @@
     <h1>
         Here you can upload files<br>
     </h1>
-    <form name="upload-form" method="post" enctype="multipart/form-data">
+    <form name="upload-form" method="post" action="?action=upload" enctype="multipart/form-data">
         <label>Choose your file :</label><br><br>
-        <input type="file" name="file"><br><br>
-        <button type="submit" name="upload-btn">Upload</button>
+        <input name="user_file" type="file"><br><br>
+        <button name="upload-btn" type="submit">Upload</button>
     </form>
 {% endblock %}
