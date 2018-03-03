@@ -4,6 +4,11 @@
 
 {% block content %}
     <h1>
-    Here you can upload files<br>
-</h1>
+        Here you can upload files<br>
+    </h1>
+    <form name="upload-form" method="post" enctype="multipart/form-data">
+        <label>Choose your file :</label><br><br>
+        <input type="file" name="file"><br><br>
+        <button type="submit" name="upload-btn">Upload</button>
+    </form>
 {% endblock %}
