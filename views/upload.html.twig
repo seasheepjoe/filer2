@@ -16,7 +16,9 @@
     </div>
     <div class="files">
     {% for file in files %}
-        <h3>{{ file }}</h3>
-    {% endfor %}    
+        {% for lol in file %}
+            {{ lol['name'] }}
+        {% endfor %} 
+    {% endfor %} 
     </div>    
 {% endblock %}

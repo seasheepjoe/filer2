@@ -3,6 +3,27 @@
 require_once('Cool/DBManager.php');
 
 class FileManager {
+
+    public function putFileOnDb($file_data) {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $request = $pdo->query("INSERT INTO `files` (`id`, `name`, `type`, `size`, `link`) VALUES (NULL, '".$file_data['name']."', '".$file_data['type']."', '".$file_data['size']."', '".$file_data['dir']."')");
+    }
+
+    public function getFilesInDb () {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $request = $pdo->query("SELECT * FROM `files`");
+        $files = [];    
+        while ($result = $request->fetchAll()){
+            $files[] = $result;
+            return $files;
+        }
+    }
+
+
     public function upload($file_data) {
 
         $errors = [];
@@ -30,15 +51,8 @@ class FileManager {
                 $upload = false;
             }
             self::putFileOnDb($file_data);
-            
         }else {
             return $errors;
         }
-    }
-    private function putFileOnDb($file_data) {
-        $db = DBManager::getInstance();
-        $pdo = $db->getPdo();
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $request = $pdo->query("INSERT INTO `files` (`id`, `name`, `type`, `size`, `link`) VALUES (NULL, '".$file_data['name']."', '".$file_data['type']."', '".$file_data['size']."', '".$file_data['dir']."')");
     }
 }
