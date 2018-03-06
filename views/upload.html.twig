@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Filer | Upload{% endblock %}
+{% block page_title %}Filer | Upload{% endblock %}
+
+{% block content %}
+<h1>
+  Upload your files here
+</h1>
+<form name="upload-form" enctype="multipart/form-data" method="post">
+    <label>Choose your file : </label>
+    <input name="file-upload" type="file">
+    <button name="dl-file">Upload</button>
+</form>
+{% endblock %}
