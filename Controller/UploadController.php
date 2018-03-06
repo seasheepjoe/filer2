@@ -28,7 +28,12 @@ class UploadController extends BaseController
             $users_data = [
                 'errors' => $upload_errors,
                 'user' => $_SESSION,
-                'files'=> scandir($_SESSION['user_dir']),
+                'files'=> [
+                    'name' => $name,
+                    'size' => $size,
+                    'type' => $type,
+                    'user_dir' => $user_dir,
+                ],
             ];
         }
         return $this->render('upload.html.twig', $users_data);

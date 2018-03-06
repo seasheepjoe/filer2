@@ -29,8 +29,16 @@ class FileManager {
                 $errors['upload'] = 'File is too big, max 1go' . $file_data['dir'];
                 $upload = false;
             }
+            self::putFileOnDb($file_data);
+            
         }else {
             return $errors;
         }
-    } 
+    }
+    private function putFileOnDb($file_data) {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $request = $pdo->query("INSERT INTO `files` (`id`, `name`, `type`, `size`, `link`) VALUES (NULL, '".$file_data['name']."', '".$file_data['type']."', '".$file_data['size']."', '".$file_data['dir']."')");
+    }
 }
