@@ -18,7 +18,7 @@ class AccountManager {
             $sendForm = false;
         }
 
-        if (strlen($password) <= 7 || strlen($password) > 15) {
+        if (strlen($password) <= 5 || strlen($password) > 15) {
             $errors['password'] = 'Password must be 8-15';
             $sendForm = false;
         }
