@@ -6,6 +6,18 @@
     <link rel="stylesheet" href="assets/style.css">
   </head>
   <body>
+  {% block header %}
+    {% if user['username'] is defined %}
+      <h1>Filer | {{ user['username'] }}</h1>
+      <a href="?action=home">Home</a>
+      <a href="?action=upload">Upload</a>
+      <a href="?action=logout">Logout</a>
+      {% else %}
+      <a href="?action=home">Home</a>
+      <a href="?action=login">Login</a>
+      <a href="?action=register">Register</a>
+    {% endif %}
+  {% endblock %}
     {% block content %}{% endblock %}
   </body>
 </html>

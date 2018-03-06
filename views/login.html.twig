@@ -1,0 +1,16 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Filer | Login{% endblock %}
+
+{% block content %}
+    <h1>
+    Login to see your files<br>
+</h1>
+<form name="login-form" method="post" action="?action=login">
+    <label>Email</label><br>
+    <input name="email" type="email" id="email" required placeholder="johndoe@john.doe">{{ errors }}<br><br>
+    <label>Password</label><br>
+    <input name="password" type="password" id="password" required placeholder="i'mtherealjohndoe">{{ errors }}<br><br>
+    <button type="submit" name="login-btn">Register</button>    
+</form>
+{% endblock %}
