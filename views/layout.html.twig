@@ -7,17 +7,27 @@
   </head>
   <body>
   {% block header %}
-    {% if user['username'] is defined %}
-      <h1>Filer | {{ user['username'] }}</h1>
-      <a href="?action=home">Home</a>
-      <a href="?action=upload">Upload</a>
-      <a href="?action=logout">Logout</a>
-      {% else %}
-      <a href="?action=home">Home</a>
-      <a href="?action=login">Login</a>
-      <a href="?action=register">Register</a>
-    {% endif %}
+  <div class="header_wrap">
+    <div class="navbar_wrap">
+      <div class="navbar row">
+        <a id="mainLogo" href="?action=home">
+          <img src="./assets/img/filerLogo.png" alt="filer logo">
+        </a>
+        <ul class="nav row">
+          {% if user['username'] is defined %}
+          <li class="nav_item"><a class="nav_link" href="?action=upload">Upload</a></li>
+          <li class="nav_item"><a class="nav_link" href="?action=logout">Logout</a></li>
+          {% else %}
+          <li class="nav_item"><a class="nav_link" href="?action=login">Login</a></li>
+          <li class="nav_item"><a class="nav_link" href="?action=register">Register</a></li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </div>
   {% endblock %}
+  <div class="content_wrap">
     {% block content %}{% endblock %}
+  </div>
   </body>
 </html>
