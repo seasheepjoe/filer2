@@ -15,10 +15,23 @@
         {{ errors['upload'] }}
     </div>
     <div class="files">
-    {% for file in files %}
-        {% for lol in file %}
-            {{ lol['name'] }}
-        {% endfor %} 
-    {% endfor %} 
+    <table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Size</th>
+        <th>Link</th>
+    </tr>    
+        {% for file in files %}
+            {% for entry in file %}
+            <tr>
+                <td>{{ entry['name'] }}</td>
+                <td>{{ entry['type'] }}</td>
+                <td>{{ entry['size'] }}</td>
+                <td>{{ entry['link'] }}</td>
+            </tr>    
+            {% endfor %} 
+        {% endfor %}
+    </table>     
     </div>    
 {% endblock %}
