@@ -16,13 +16,11 @@ class FileManager {
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $request = $pdo->query("SELECT * FROM `files`");
-        
-        $result = $request->fetchAll();
-
-        if (!empty($result)) {
-            return $result;
+        $files = [];    
+        while ($result = $request->fetch()){
+            $files[] = $result;
+            return $files;
         }
-        
     }
 
 

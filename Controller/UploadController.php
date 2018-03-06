@@ -31,8 +31,6 @@ class UploadController extends BaseController
             ];
         }
 
-        var_dump($file_manager->getFilesInDb());
-
         return $this->render('upload.html.twig', $users_data);
     }
 }
