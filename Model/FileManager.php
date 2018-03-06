@@ -4,11 +4,11 @@ require_once('Cool/DBManager.php');
 
 class FileManager {
 
-    private function setFileInDb () {
+    public function putFileOnDb($file_data) {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $request = $pdo->prepare("");
+        $request = $pdo->query("INSERT INTO `files` (`id`, `name`, `type`, `size`, `link`) VALUES (NULL, '".$file_data['name']."', '".$file_data['type']."', '".$file_data['size']."', '".$file_data['dir']."')");
     }
 
     public function getFilesInDb () {
@@ -17,7 +17,7 @@ class FileManager {
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $request = $pdo->query("SELECT * FROM `files`");
         $files = [];    
-        while ($result = $request->fetch()){
+        while ($result = $request->fetchAll()){
             $files[] = $result;
             return $files;
         }
@@ -50,7 +50,7 @@ class FileManager {
                 $errors['upload'] = 'File is too big, max 1go' . $file_data['dir'];
                 $upload = false;
             }
-            self::setFileInDb();
+            self::putFileOnDb($file_data);
         }else {
             return $errors;
         }
