@@ -15,7 +15,7 @@ class FileManager {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $request = $pdo->query("SELECT * FROM `files`");
+        $request = $pdo->query("SELECT * FROM `files` WHERE `link` = '" . $_SESSION['user_dir'] . "'");
         $files = [];    
         while ($result = $request->fetchAll()){
             $files[] = $result;
