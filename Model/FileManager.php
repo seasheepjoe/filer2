@@ -55,4 +55,12 @@ class FileManager {
             return $errors;
         }
     }
+
+    public function delete($id) {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $request = $pdo->query("DELETE FROM `files` WHERE `id` = $id");
+        unlink();
+    }
 }

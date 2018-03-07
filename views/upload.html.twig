@@ -32,7 +32,7 @@
                         <td>{{ entry['type'] }}</td>
                         <td>{{ entry['size'] }}</td>
                         <td>{{ entry['link'] }}</td>
-                        <td><button type="submit" name="delete-btn" aria-hidden="true">Delete</button></td>
+                        <td><button type="submit" name="delete-btn" value={{ entry['id'] }}>Delete</button></td>
                         <td>Move</td>
                     </tr>    
                     {% endfor %} 

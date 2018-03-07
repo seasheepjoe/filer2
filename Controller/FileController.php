@@ -31,6 +31,13 @@ class FileController extends BaseController
                 'files'  => $file_manager->getFilesInDb(),
             ];
         }
+
+        if (isset($_POST['delete-btn'])) {
+            $file_manager->delete($_POST['delete-btn']);
+            header('Location: ?action=upload');
+            exit();
+        }
+
         return $this->render('upload.html.twig', $users_data);
     }
 }
