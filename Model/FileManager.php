@@ -60,7 +60,15 @@ class FileManager {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $request = $pdo->query("DELETE FROM `files` WHERE `id` = $id");
-        unlink();
+        $get = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
+        $delete = $pdo->prepare("DELETE FROM `files` WHERE `id` = $id");
+        while ($result = $get->fetchAll()){
+            foreach ($result as $value) {
+                if (unlink($value['link'] . $value['name']) && $delete->execute()) {
+                    header('Location: ?action=upload');
+                    exit();
+                }
+            }
+        }
     }
 }
