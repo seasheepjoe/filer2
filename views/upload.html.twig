@@ -16,22 +16,28 @@
 
     <div class="filer_content">
         <table class="files_list" border="1">
-        <tr>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Size</th>
-            <th>Link</th>
-        </tr>    
-            {% for file in files %}
-                {% for entry in file %}
-                <tr>
-                    <td>{{ entry['name'] }}</td>
-                    <td>{{ entry['type'] }}</td>
-                    <td>{{ entry['size'] }}</td>
-                    <td>{{ entry['link'] }}</td>
-                </tr>    
-                {% endfor %} 
-            {% endfor %}
+        <form action="?action=upload" method="post">
+            <tr>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Link</th>
+                <th>Delete</th>
+                <th>Move</th>
+            </tr>    
+                {% for file in files %}
+                    {% for entry in file %}
+                    <tr>
+                        <td>{{ entry['name'] }}</td>
+                        <td>{{ entry['type'] }}</td>
+                        <td>{{ entry['size'] }}</td>
+                        <td>{{ entry['link'] }}</td>
+                        <td><button type="submit" name="delete-btn" aria-hidden="true">Delete</button></td>
+                        <td>Move</td>
+                    </tr>    
+                    {% endfor %} 
+                {% endfor %}
+            </form>    
         </table>
     </div>
 </div>
