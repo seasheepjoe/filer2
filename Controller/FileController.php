@@ -2,7 +2,7 @@
 
 require_once('Cool/BaseController.php');
 
-class UploadController extends BaseController
+class FileController extends BaseController
 {
     public function uploadAction() {
         session_start();

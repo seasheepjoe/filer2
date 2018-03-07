@@ -12,7 +12,7 @@ $config = [
         'home'    => 'Main:home',
         'register'=> 'Account:register',
         'login'   => 'Account:login',
-        'upload'  => 'Upload:upload',
+        'upload'  => 'File:upload',
         'logout'  => 'Account:logout',
     ]
 ];
