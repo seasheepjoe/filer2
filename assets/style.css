@@ -194,3 +194,9 @@ button:focus {
 .btn:hover {
     background-color: #ad2d2b;
 }
+
+.upload_errors {
+    color: red;
+    font-weight: bold;
+    font-size: 24px;
+}
