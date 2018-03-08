@@ -71,4 +71,21 @@ class FileManager {
             }
         }
     }
+
+    public function edit($id) {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $get_name = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
+        while ($get_old_name = $get_name->fetchAll()) {
+            foreach ($get_old_name as $old_name) {
+                $old_name = $old_name['name'];
+                $new_name = 'newname';
+                $set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $new_name . "' WHERE `id` = $id");
+                header('Location: ?action=upload');
+                exit();
+            }
+        }
+
+    }
 }
