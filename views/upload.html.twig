@@ -22,6 +22,7 @@
                 <th>Type</th>
                 <th>Size</th>
                 <th>Link</th>
+                <th>Download</th>
                 <th>Delete</th>
                 <th>Move</th>
             </tr>    
@@ -32,6 +33,7 @@
                         <td>{{ entry['type'] }}</td>
                         <td>{{ entry['size'] }}</td>
                         <td>{{ entry['link'] }}</td>
+                        <td><a href="{{ entry['link'] }}" download="{{ entry['name'] }}">Download</a></td>
                         <td><button type="submit" name="delete-btn" aria-hidden="true">Delete</button></td>
                         <td>Move</td>
                     </tr>    
