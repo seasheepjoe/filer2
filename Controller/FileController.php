@@ -36,6 +36,10 @@ class FileController extends BaseController
             $file_manager->delete($_POST['delete-btn']);
         }
 
+        if (isset($_POST['edit-btn'])) {
+            $file_manager->edit($_POST['edit-btn']);
+        }
+
         return $this->render('upload.html.twig', $users_data);
     }
 }
