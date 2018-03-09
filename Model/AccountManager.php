@@ -73,6 +73,9 @@ class AccountManager {
             header('Location: ?action=upload');
             exit();
         }else {
+            $handle = fopen('logs/security.log', 'a+');
+            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " ."Failed to log in as ". "'" . $email . "'\n");
+            fclose($handle);
             return 'Invalid email or password';
         }
     }
