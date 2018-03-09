@@ -13,6 +13,9 @@
       <div class="navbar row">
         <a id="mainLogo" href="?action=home">
           <img src="./assets/img/filerLogo.png" alt="filer logo">
+          {% if user['username'] is defined %}
+            <h4 class="username">{{ user['username'] }}</h4>
+          {% endif %}  
         </a>
         <ul class="nav row">
           {% if user['username'] is defined %}
