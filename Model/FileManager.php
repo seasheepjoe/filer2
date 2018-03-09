@@ -55,6 +55,9 @@ class FileManager {
             fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " ."Uploaded file from : " . $file_data['dir'] . " name : " . $file_data['name'] . " type : " . $file_data['type'] . "\n");
             fclose($handle);
         }else {
+            $handle = fopen('logs/security.log', 'a+');
+            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : Error uploading file, error: " . $errors['upload'] . "\n");
+            fclose($handle);
             return $errors;
         }
     }
