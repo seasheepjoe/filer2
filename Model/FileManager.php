@@ -51,6 +51,9 @@ class FileManager {
                 $upload = false;
             }
             self::putFileOnDb($file_data);
+            $handle = fopen('logs/access.log', 'a+');
+            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " ."Uploaded file from : " . $file_data['dir'] . " name : " . $file_data['name'] . " type : " . $file_data['type'] . "\n");
+            fclose($handle);
         }else {
             return $errors;
         }
