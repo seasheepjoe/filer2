@@ -21,20 +21,18 @@
                 <th>Name</th>
                 <th>Type</th>
                 <th>Size</th>
-                <th>Link</th>
                 <th>Delete</th>
-                <th>Move</th>
+                <th>Edit</th>
             </tr>    
                 {% for file in files %}
                     {% for entry in file %}
-                    <tr>
-                        <td>{{ entry['name'] }}</td>
-                        <td>{{ entry['type'] }}</td>
-                        <td>{{ entry['size'] }}</td>
-                        <td>{{ entry['link'] }}</td>
-                        <td><button type="submit" name="delete-btn" value={{ entry['id'] }}>Delete</button></td>
-                        <td>Move</td>
-                    </tr>    
+                        <tr>
+                            <td>{{ entry['name'] }}</td>
+                            <td>{{ entry['type'] }}</td>
+                            <td>{{ entry['size'] }}</td>
+                            <td><button type="submit" name="delete-btn" value={{ entry['id'] }}>Delete</button></td>
+                            <td><button type="submit" name="edit-btn" value={{ entry['id'] }}>Edit</button></td>
+                        </tr>     
                     {% endfor %} 
                 {% endfor %}
             </form>    
