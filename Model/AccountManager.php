@@ -11,6 +11,7 @@ class AccountManager {
         if (strlen($firstname) <= 2 || strlen($firstname) > 25) {
             $errors['firstname'] = 'Firstname must be 3-25 long';
             $sendForm = false;
+            
         }
 
         if (strlen($lastname) <= 2 || strlen($lastname) > 25) {
@@ -66,6 +67,9 @@ class AccountManager {
         if (!empty($user)) { 
             $_SESSION['username'] = $user['firstname'];
             $_SESSION['user_dir'] = 'uploads/' . $user['firstname'] . '/';
+            $handle = fopen('logs/access.log', 'a+');
+            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " ."Logged in as ". "'" . $email . "'\n");
+            fclose($handle);
             header('Location: ?action=upload');
             exit();
         }else {
