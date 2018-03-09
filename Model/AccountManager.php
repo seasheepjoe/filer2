@@ -48,8 +48,9 @@ class AccountManager {
             $request->execute();
             $dir = 'uploads/' . $firstname . '/';
             mkdir($dir, 0777, true);
+            self::write('access.log', 'Created new user', $email);
             header('Location: ?action=login');
-
+            exit();
         }else {
             return $errors;
         }
@@ -67,16 +68,18 @@ class AccountManager {
         if (!empty($user)) { 
             $_SESSION['username'] = $user['firstname'];
             $_SESSION['user_dir'] = 'uploads/' . $user['firstname'] . '/';
-            $handle = fopen('logs/access.log', 'a+');
-            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " ."Logged in as ". "'" . $email . "'\n");
-            fclose($handle);
+            self::write('access.log', 'Logged in as', $email);
             header('Location: ?action=upload');
             exit();
         }else {
-            $handle = fopen('logs/security.log', 'a+');
-            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " ."Failed to log in as ". "'" . $email . "'\n");
-            fclose($handle);
+            self::write('security.log', 'Failed to log in as', $email);
             return 'Invalid email or password';
         }
+    }
+
+    public function write($file, $message, $data) {
+        $handle = fopen('logs/' . $file, 'a+');
+        fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " . $message . " : " . "'" . $data . "'" .  "\n");
+        fclose($handle);
     }
 }

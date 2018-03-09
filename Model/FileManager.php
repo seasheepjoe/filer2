@@ -51,13 +51,9 @@ class FileManager {
                 $upload = false;
             }
             self::putFileOnDb($file_data);
-            $handle = fopen('logs/access.log', 'a+');
-            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " ."Uploaded file from : " . $file_data['dir'] . " name : " . $file_data['name'] . " type : " . $file_data['type'] . "\n");
-            fclose($handle);
+            self::write('access.log', 'Uploaded file from ', $file_data['dir'] . " / " . $file_data['name'] . " / " . $file_data['type']);
         }else {
-            $handle = fopen('logs/security.log', 'a+');
-            fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : Error uploading file, error: " . $errors['upload'] . "\n");
-            fclose($handle);
+            self::write('security.log', 'Error uploading file, error : ', $errors['upload']);
             return $errors;
         }
     }
@@ -92,6 +88,11 @@ class FileManager {
                 exit();
             }
         }
+    }
 
+    public function write($file, $message, $data) {
+        $handle = fopen('logs/' . $file, 'a+');
+        fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " . $message . " : " . "'" . $data . "'" .  "\n");
+        fclose($handle);
     }
 }
