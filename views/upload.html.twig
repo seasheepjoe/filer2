@@ -33,7 +33,7 @@
                             <td>{{ entry['type'] }}</td>
                             <td>{{ entry['size'] }}</td>
                             <td>{{ entry['link'] }}</td>
-                            <td><a href="{{ entry['link'] }}" download="{{ entry['name'] }}">Download</a></td>
+                            <td><button type="submit" name="download-btn" value={{ entry['id'] }}>Download</a></td>
                             <td><button type="submit" name="delete-btn" value={{ entry['id'] }}>Delete</button></td>
                             <td><button type="submit" name="edit-btn" value={{ entry['id'] }}>Edit</button></td>
                         </tr>
