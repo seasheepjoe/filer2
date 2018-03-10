@@ -96,4 +96,22 @@ class FileManager {
         fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " . $message . " : " . "'" . $data . "'" .  "\n");
         fclose($handle);
     }
+
+    public function download($id) {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $get_data = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
+
+        $data = $get_data->fetchAll();
+
+        foreach ($data as $value) {
+            header('Content-Description: File Transfer');
+            header('Content-Disposition: attachment; filename="' . $value['name'] . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');            
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($value['size']));
+        }
+    }
 }
