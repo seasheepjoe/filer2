@@ -4,11 +4,11 @@ require_once('Cool/DBManager.php');
 
 class FileManager {
 
-    public function putFileOnDb($file_data) {
+    public function putFileOnDb($file_data, $ext) {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $request = $pdo->query("INSERT INTO `files` (`id`, `name`, `type`, `size`, `link`) VALUES (NULL, '".$file_data['name']."', '".$file_data['type']."', '".$file_data['size']."', '".$file_data['dir']."')");
+        $request = $pdo->query("INSERT INTO `files` (`id`, `name`, `type`, `size`, `link`) VALUES (NULL, '".$file_data['name']."', '".$ext."', '".$file_data['size']."', '".$file_data['dir']."')");
     }
 
     public function getFilesInDb () {
@@ -36,6 +36,9 @@ class FileManager {
         $files = [];
         $upload = true;
 
+        //Remove ext to secure
+        list($file_data['name'], $ext) = explode(".", $file_data['name']);
+
         if (file_exists($file_data['dir'] . $file_data['name'])) {
             $errors['upload'] = 'Files exists, please choose another file';
             $upload = false;
@@ -56,7 +59,8 @@ class FileManager {
                 $errors['upload'] = 'File is too big, max 1go' . $file_data['dir'];
                 $upload = false;
             }
-            self::putFileOnDb($file_data);
+
+            self::putFileOnDb($file_data, $ext);
             self::write('access.log', 'Uploaded file from ', $file_data['dir'] . " / " . $file_data['name'] . " / " . $file_data['type']);
         }else {
             self::write('security.log', 'Error uploading file, error : ', $errors['upload']);
@@ -102,7 +106,7 @@ class FileManager {
         $data = self::getDataFromID($id)->fetchAll();
         foreach ($data as $value) {
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename="' . $value['name'] . '"');
+            header('Content-Disposition: attachment; filename="' . $value['name'] . '.' . $value['type'] . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');            
             header('Pragma: public');
