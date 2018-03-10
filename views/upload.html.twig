@@ -29,17 +29,30 @@
                 {% for file in files %}
                     {% for entry in file %}
                     <tr>
-                        <td>{{ entry['name'] }}</td>
+                        <td>
+                            <input type="text" name="new_name" value="{{entry['name']}}">
+                            <button id="rename-btn" class="nostyle-btn" name="rename-btn" type="submit">
+                                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+                            </button>
+                        </td>
                         <td>{{ entry['type'] }}</td>
                         <td>{{ entry['size'] }}</td>
                         <td>{{ entry['link'] }}</td>
-                        <td><a href="{{ entry['link'] }}" download="{{ entry['name'] }}">Download</a></td>
-                        <td><button type="submit" name="delete-btn" aria-hidden="true">Delete</button></td>
+                        <td>
+                            <a href="{{ entry['link'] }}" download="{{ entry['name'] }}">
+                                <i class="fa fa-download" aria-hidden="true"></i>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="?action=upload">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </a>
+                        </td>
                         <td>Move</td>
                     </tr>    
                     {% endfor %} 
                 {% endfor %}
-            </form>    
+            </form>   
         </table>
     </div>
 </div>

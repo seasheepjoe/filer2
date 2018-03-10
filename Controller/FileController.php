@@ -31,6 +31,14 @@ class FileController extends BaseController
                 'files'  => $file_manager->getFilesInDb(),
             ];
         }
+
+        if (isset($_POST['rename-btn'])) {
+            $name = "test1";
+            $id = 1;
+            var_dump($_POST['rename-btn']);
+            $file_manager->renameFileInDb($name, $id);
+        }
+
         return $this->render('upload.html.twig', $users_data);
     }
 }

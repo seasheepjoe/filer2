@@ -200,3 +200,9 @@ button:focus {
     font-weight: bold;
     font-size: 24px;
 }
+
+.nostyle-btn {
+    border: none;
+    background-color: #FFF;
+    cursor: pointer;
+}
