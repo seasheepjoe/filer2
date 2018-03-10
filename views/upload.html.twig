@@ -21,6 +21,8 @@
                 <th>Name</th>
                 <th>Type</th>
                 <th>Size</th>
+                <th>Link</th>
+                <th>Download</th>
                 <th>Delete</th>
                 <th>Edit</th>
             </tr>    
@@ -30,9 +32,11 @@
                             <td>{{ entry['name'] }}</td>
                             <td>{{ entry['type'] }}</td>
                             <td>{{ entry['size'] }}</td>
+                            <td>{{ entry['link'] }}</td>
+                            <td><a href="{{ entry['link'] }}" download="{{ entry['name'] }}">Download</a></td>
                             <td><button type="submit" name="delete-btn" value={{ entry['id'] }}>Delete</button></td>
                             <td><button type="submit" name="edit-btn" value={{ entry['id'] }}>Edit</button></td>
-                        </tr>     
+                        </tr>
                     {% endfor %} 
                 {% endfor %}
             </form>    
