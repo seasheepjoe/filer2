@@ -71,23 +71,18 @@ class FileManager {
                     exit();
                 }
             }
-        }
+        }    
     }
 
     public function edit($id) {
-        $db = DBManager::getInstance();
-        $pdo = $db->getPdo();
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $get_data = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
-        while ($get_old_name = $get_data->fetchAll()) {
-            foreach ($get_old_name as $data) {
-                $old_name = $data['name'];
-                $new_name = 'newndzdzzdzame';
-                //$set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $new_name . "' WHERE `id` = $id");
-                rename("/" . $data['link'] . $old_name, "/" . $data['link'] . $new_name);
-                /*header('Location: ?action=upload');
-                exit();*/
-            }
+        $data = self::getDataFromID($id)->fetchAll();
+        foreach ($data as $value) {
+            $old_name = $value['name'];
+            $new_name = 'newndzdzzdzame';
+            //$set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $new_name . "' WHERE `id` = $id");
+             rename("/" . $value['link'] . $old_name, "/" . $value['link'] . $new_name);
+            /*header('Location: ?action=upload');
+            exit();*/
         }
     }
 
@@ -98,13 +93,7 @@ class FileManager {
     }
 
     public function download($id) {
-        $db = DBManager::getInstance();
-        $pdo = $db->getPdo();
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $get_data = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
-
-        $data = $get_data->fetchAll();
-
+        $data = self::getDataFromID($id)->fetchAll();
         foreach ($data as $value) {
             header('Content-Description: File Transfer');
             header('Content-Disposition: attachment; filename="' . $value['name'] . '"');
@@ -112,6 +101,15 @@ class FileManager {
             header('Cache-Control: must-revalidate');            
             header('Pragma: public');
             header('Content-Length: ' . filesize($value['size']));
+            exit();
         }
+    }
+
+    private function getDataFromID($id) {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $get_data = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
+        return $get_data;
     }
 }
