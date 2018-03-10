@@ -74,18 +74,19 @@ class FileManager {
         }
     }
 
-    public function edit($id, $dir) {
+    public function edit($id) {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $get_name = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
-        while ($get_old_name = $get_name->fetchAll()) {
-            foreach ($get_old_name as $old_name) {
-                $old_name = $old_name['name'];
+        $get_data = $pdo->query("SELECT * FROM `files` WHERE `id` = $id");
+        while ($get_old_name = $get_data->fetchAll()) {
+            foreach ($get_old_name as $data) {
+                $old_name = $data['name'];
                 $new_name = 'newndzdzzdzame';
-                $set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $new_name . "' WHERE `id` = $id");
-                header('Location: ?action=upload');
-                exit();
+                //$set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $new_name . "' WHERE `id` = $id");
+                rename("/" . $data['link'] . $old_name, "/" . $data['link'] . $new_name);
+                /*header('Location: ?action=upload');
+                exit();*/
             }
         }
     }
