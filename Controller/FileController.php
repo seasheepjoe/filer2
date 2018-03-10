@@ -40,6 +40,10 @@ class FileController extends BaseController
             $file_manager->edit($_POST['edit-btn']);
         }
 
+        if (isset($_POST['download-btn'])) {
+            $file_manager->download($_POST['download-btn']);
+        }
+
         return $this->render('upload.html.twig', $users_data);
     }
 }
