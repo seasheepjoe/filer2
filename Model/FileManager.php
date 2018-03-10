@@ -23,6 +23,12 @@ class FileManager {
         }
     }
 
+    public function renameFileInDb($value,$id) {
+        $db = DBManager::getInstance();
+        $pdo = $db->getPdo();
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $request = $pdo->query("UPDATE files SET name = '$value' WHERE id = $id");
+    }
 
     public function upload($file_data) {
 
