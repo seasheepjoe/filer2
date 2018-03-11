@@ -7,10 +7,11 @@
 <div class="content">
     <form name="login-form" method="post" action="?action=login">
         <label>Email</label><br>
-        <input name="email" type="email" id="email" required placeholder="johndoe@john.doe">{{ errors }}<br><br>
+        <input name="email" type="email" id="email" required placeholder="johndoe@john.doe"><br><br>
         <label>Password</label><br>
-        <input name="password" type="password" id="password" required placeholder="i'mtherealjohndoe">{{ errors }}<br><br>
-        <button class="log_button" type="submit" name="login-btn">Login</button>    
+        <input name="password" type="password" id="password" required placeholder="i'mtherealjohndoe"><br><br>
+        <button class="log_button" type="submit" name="login-btn">Login</button>
+        <div class="errors">{{ errors }}</div>    
     </form>
 </div>
 {% endblock %}
