@@ -77,10 +77,10 @@ class FileManager {
     public function edit($id) {
         $data = self::getDataFromID($id)->fetchAll();
         foreach ($data as $value) {
-            $old_name = $value['name'];
-            $new_name = 'newndzdzzdzame';
+            $old_name = "/" . $value['link'] . $value['name'];
+            $new_name = "/" . $value['link'] . 'newndzdzzdzame.jpg';
             //$set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $new_name . "' WHERE `id` = $id");
-             rename("/" . $value['link'] . $old_name, "/" . $value['link'] . $new_name);
+             rename($old_name, $new_name);
             /*header('Location: ?action=upload');
             exit();*/
         }
