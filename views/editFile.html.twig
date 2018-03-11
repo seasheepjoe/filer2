@@ -1,0 +1,20 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Filer | Upload{% endblock %}  
+
+{% block content %}
+<div class="col form_wrap">
+    <div class="filer_content">
+        <form name="edit-file-form" method="post" action="?action=editfile">
+            <div class="file-content">
+                {% if data is defined %}
+                    <textarea name="textarea">{{ data }}</textarea>
+                {% endif %}
+            </div>
+            <button type="submit" name="save-btn" value={{ files }}>Save</button>    
+            <div class="errors">{{ errors }}</div>    
+        </form>
+
+    </div>
+</div>
+{% endblock %}

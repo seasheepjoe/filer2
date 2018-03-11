@@ -24,6 +24,7 @@
                 <th>Download</th>
                 <th>Delete</th>
                 <th>Edit</th>
+                <th>Edit File</th>
             </tr>    
                 {% for file in files %}
                     {% for entry in file %}
@@ -33,7 +34,8 @@
                             <td>{{ entry['size'] }}</td>
                             <td><button type="submit" name="download-btn" value={{ entry['id'] }}>Download</a></td>
                             <td><button type="submit" name="delete-btn" value={{ entry['id'] }}>Delete</button></td>
-                            <td><button type="submit" name="edit-btn" value={{ entry['id'] }}>Edit</button></td>
+                            <td><button type="submit" name="edit-btn" value={{ entry['id'] }}>Edit</button></td> 
+                            <td><button type="submit" name="edit-file-btn" value={{ entry['id'] }}>Edit File</button></td>   
                         </tr>
                     {% endfor %} 
                 {% endfor %}

@@ -14,5 +14,6 @@ $config = [
         'login'   => 'Account:login',
         'upload'  => 'File:upload',
         'logout'  => 'Account:logout',
+        'editfile'=> 'EditFile:editFile',
     ]
 ];
