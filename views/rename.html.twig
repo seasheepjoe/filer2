@@ -1,0 +1,13 @@
+{% extends 'layout.html.twig' %}
+
+{% block page_title %}Filer | Rename{% endblock %}  
+
+{% block content %}
+<div class="col form_wrap">
+    <form class="filer_content" name="rename-form" method="post" action="?action=rename" enctype="multipart/form-data">
+        <label>Rename</label><br><br>
+        <input name="rename" type="text"><br><br>
+        <button class="btn" name="rename-btn" type="submit" value={{ files }}>Rename</button>
+    </form>
+</div>
+{% endblock %}

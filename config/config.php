@@ -15,5 +15,6 @@ $config = [
         'upload'  => 'File:upload',
         'logout'  => 'Account:logout',
         'editfile'=> 'EditFile:editFile',
+        'rename'  => 'Rename:rename',
     ]
 ];

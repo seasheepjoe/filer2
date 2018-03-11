@@ -69,20 +69,25 @@ class FileManager {
             }
         }    
     }
-    /*public function edit($id) {
+
+    public function renameFile($id) {
         $data = self::getDataFromID($id)->fetchAll();
         foreach ($data as $value) {
-            $old_name = "/uploads/John/buck.png/";
-            $new_name = "wesh";
-            $db = DBManager::getInstance();
-            $pdo = $db->getPdo();
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            rename($old_name, $new_name);
-            $set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $new_name . "' WHERE `id` = $id");
-            header('Location: ?action=upload');
-            exit();
+            if (isset($_POST['rename'])) {
+                $old_name = $value['link'] . $value['name'] . "." . $value['type'];
+                $new_name = $value['link'] . $_POST['rename'] . "." . $value['type'];
+                $s_name = htmlentities($_POST['rename']);
+                $db = DBManager::getInstance();
+                $pdo = $db->getPdo();
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                rename($old_name, $new_name);
+                $set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $s_name . "' WHERE `id` = $id");
+                header('Location: ?action=upload');
+                exit();
+            }
         }
-    }*/
+    }
+
 
     public function write($file, $message, $data) {
         $handle = fopen('logs/' . $file, 'a+');
