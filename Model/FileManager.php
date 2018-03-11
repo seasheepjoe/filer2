@@ -75,7 +75,7 @@ class FileManager {
         foreach ($data as $value) {
             if (isset($_POST['rename'])) {
 
-                $post = str_replace(str_split('/...'), '', $_POST['rename']);
+                $post = str_replace(str_split('/..phjs'), '', $_POST['rename']);
         
                 $old_name = $value['link'] . $value['name'] . "." . $value['type'];
                 $new_name = $value['link'] . $post . "." . $value['type'];
