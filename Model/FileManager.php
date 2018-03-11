@@ -30,7 +30,7 @@ class FileManager {
         $upload = true;
         //Remove ext to secure
         list($file_data['name'], $ext) = explode(".", $file_data['name']);
-        if (file_exists($file_data['dir'] . $file_data['name'])) {
+        if (file_exists($file_data['dir'] . $file_data['name']  . "." . $ext)) {
             $errors['upload'] = 'Files exists, please choose another file';
             $upload = false;
         }
