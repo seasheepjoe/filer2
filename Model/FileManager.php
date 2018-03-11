@@ -74,14 +74,15 @@ class FileManager {
         $data = self::getDataFromID($id)->fetchAll();
         foreach ($data as $value) {
             if (isset($_POST['rename'])) {
+                $post = str_replace('/', 'file', $_POST['rename']);
                 $old_name = $value['link'] . $value['name'] . "." . $value['type'];
-                $new_name = $value['link'] . $_POST['rename'] . "." . $value['type'];
-                $s_name = htmlentities($_POST['rename']);
+                $new_name = $value['link'] . $post . "." . $value['type'];
+                $securized_name = htmlentities($post);
                 $db = DBManager::getInstance();
                 $pdo = $db->getPdo();
                 $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-                rename($old_name, $new_name);
-                $set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $s_name . "' WHERE `id` = $id");
+                rename($old_name, $securized_name);
+                $set_new_name = $pdo->query("UPDATE `files` SET `name` = '" . $securized_name . "' WHERE `id` = $id");
                 header('Location: ?action=upload');
                 exit();
             }

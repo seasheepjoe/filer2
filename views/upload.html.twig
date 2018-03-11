@@ -29,7 +29,7 @@
                 {% for file in files %}
                     {% for entry in file %}
                         <tr>
-                            <td>{{ entry['name'] }}</td>
+                            <td><a href={{ entry['link'] ~ entry['name'] ~ enrty['type'] }}>{{ entry['name'] }}</td>
                             <td>{{ entry['type'] }}</td>
                             <td>{{ entry['size'] }}</td>
                             <td><button type="submit" name="download-btn" value={{ entry['id'] }}>Download</a></td>
