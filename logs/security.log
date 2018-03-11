@@ -33,6 +33,7 @@
 [2018-03-10 : 15-52-57] : Error uploading file, error :  : 'Cannot find the file'
 [2018-03-10 : 15-52-57] : Error uploading file, error :  : 'Cannot find the file'
 [2018-03-10 : 15-52-57] : Error uploading file, error :  : 'Cannot find the file'
+<<<<<<< HEAD
 [2018-03-11 : 15-44-23] : Error uploading file, error :  : 'Files exists, please choose another file'
 [2018-03-11 : 15-44-33] : Error uploading file, error :  : 'Files exists, please choose another file'
 [2018-03-11 : 15-46-37] : Error uploading file, error :  : 'Files exists, please choose another file'
@@ -43,3 +44,16 @@
 [2018-03-11 : 16-02-14] : Error uploading file, error :  : 'Files exists, please choose another file'
 [2018-03-11 : 16-02-20] : Error uploading file, error :  : 'Files exists, please choose another file'
 [2018-03-11 : 16-02-20] : Error uploading file, error :  : 'Files exists, please choose another file'
+=======
+[2018-03-10 : 15-59-20] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-10 : 15-59-21] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-11 : 15-13-16] : Failed to log in as : 'dzdz@do.c'
+[2018-03-11 : 15-13-52] : Error uploading file, error :  : 'Files exists, please choose another file'
+>>>>>>> 030a9b554ea879a1452ec8e117c8b0d68af14618
+[2018-03-11 : 16-19-49] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-11 : 16-19-54] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-11 : 16-21-36] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-11 : 16-25-19] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-11 : 16-25-24] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-11 : 16-25-29] : Error uploading file, error :  : 'Files exists, please choose another file'
+[2018-03-11 : 16-26-48] : Error uploading file, error :  : 'Files exists, please choose another file'
