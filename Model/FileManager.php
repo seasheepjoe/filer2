@@ -1,15 +1,12 @@
 <?php
 require_once('Cool/DBManager.php');
-
 class FileManager {
-
     public function putFileOnDb($file_data, $ext) {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $request = $pdo->query("INSERT INTO `files` (`id`, `name`, `type`, `size`, `link`) VALUES (NULL, '".$file_data['name']."', '".$ext."', '".$file_data['size']."', '".$file_data['dir']."')");
     }
-
     public function getFilesInDb () {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
@@ -21,14 +18,12 @@ class FileManager {
             return $files;
         }
     }
-
     public function renameFileInDb($value,$id) {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $request = $pdo->query("UPDATE files SET name = '$value' WHERE id = $id");
     }
-
     public function upload($file_data) {
         $errors = [];
         $files = [];
@@ -59,7 +54,6 @@ class FileManager {
             return $errors;
         }
     }
-
     public function delete($id) {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
@@ -75,7 +69,6 @@ class FileManager {
             }
         }    
     }
-    
     public function edit($id) {
         $data = self::getDataFromID($id)->fetchAll();
         foreach ($data as $value) {
@@ -87,19 +80,17 @@ class FileManager {
             exit();*/
         }
     }
-
     public function write($file, $message, $data) {
         $handle = fopen('logs/' . $file, 'a+');
         fwrite($handle, "[" . date('Y-m-d') . " : " . date('H-i-s') . "] : " . $message . " : " . "'" . $data . "'" .  "\n");
         fclose($handle);
     }
-
     public function download($id) {
         $data = self::getDataFromID($id)->fetchAll();
         foreach ($data as $value) {
             $file = $value['link'] . $value['name'] . "." . $value['type'];
             header('Content-Description: File Transfer');
-            header('Content-Disposition: attachment; filename="'.basename($file).'"');
+            header('Content-Disposition: attachment; filename="' . $value['name'] . '.' . $value['type'] . '"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
@@ -108,7 +99,6 @@ class FileManager {
             exit();
         }
     }
-
     private function getDataFromID($id) {
         $db = DBManager::getInstance();
         $pdo = $db->getPdo();
